@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        CI = 'true'
+        CI='true'
     }
     stages {
         stage('Build') {
@@ -24,7 +24,7 @@ pipeline {
                 echo 'Delivering for development...'
                 bat '"C:\\Program Files\\Git\\bin\\bash.exe" ./jenkins/scripts/deliver-for-development.sh'
                 timeout(time: 5, unit: 'MINUTES') {
-                    input message: 'Finished using the web site? (Click "Proceed" to continue)', timeoutMessage: 'Timeout reached without proceeding.'
+                    input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 }
                 bat '"C:\\Program Files\\Git\\bin\\bash.exe" ./jenkins/scripts/kill.sh'
             }
@@ -37,7 +37,7 @@ pipeline {
                 echo 'Deploying for production...'
                 bat '"C:\\Program Files\\Git\\bin\\bash.exe" ./jenkins/scripts/deploy-for-production.sh'
                 timeout(time: 5, unit: 'MINUTES') {
-                    input message: 'Finished using the web site? (Click "Proceed" to continue)', timeoutMessage: 'Timeout reached without proceeding.'
+                    input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 }
                 bat '"C:\\Program Files\\Git\\bin\\bash.exe" ./jenkins/scripts/kill.sh'
             }
